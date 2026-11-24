@@ -46,14 +46,16 @@ When receiving a prompt, classify it into one of these 5 levels:
 * **Dispatch Receipt:**  
   `[Hub: Direct Fast-Path] Simple/isolated request detected. Executing immediately with zero subagent overhead.`
 
-### Level 1: Read-Only Codebase Forensics & Profiling
-* **Triggers:** "How does the auth token refresh work?", "Why do we have a timeout here?", "Where should this logic live?", "Audit project tech stack / declare architecture".
+### Level 1: Read-Only Codebase Forensics, Profiling & Memory
+* **Triggers:** "How does the auth token refresh work?", "Why do we have a timeout here?", "Where should this logic live?", "Audit project tech stack / declare architecture", "Triage this crash/stack trace", "Check past decisions or record ADR".
 * **Action:**
   * For subsystem walkthroughs $\rightarrow$ Route to **`/how`**.
   * For historical archaeology $\rightarrow$ Route to **`/why`**.
   * For stack detection & `ARCHITECTURE.md` generation $\rightarrow$ Route to **`project-profiler`**.
+  * For crash / log forensic analysis & repro scaffolding $\rightarrow$ Route to **`incident-triage`**.
+  * For persistent memory, quirks & ADR lookup $\rightarrow$ Route to **`til-vault`**.
 * **Dispatch Receipt:**  
-  `[Hub: Forensics (/how | /why | project-profiler)] Codebase intelligence task detected. Analyzing architecture and patterns.`
+  `[Hub: Forensics (/how | /why | project-profiler | incident-triage | til-vault)] Codebase intelligence & forensic task detected. Analyzing architecture and patterns.`
 
 ### Level 2: Focused Task, Bug Fix, or Refactor
 * **Triggers:** A bug report, a performance regression, an internal refactoring, or a single isolated feature.
@@ -66,8 +68,8 @@ When receiving a prompt, classify it into one of these 5 levels:
 * **Dispatch Receipt:**  
   `[Hub: pstack Playbook (<Playbook Name>)] Focused engineering task detected. Activating 5-phase root-cause and TDD state machine.`
 
-### Level 3: Architecture & Design Forks
-* **Triggers:** "Design the API before writing code", "Which approach is better: A or B?", "Set up design tokens / 60-30-10 theme", "Mock this API", "Start local dev server / stack", "Audit document formatting / generate styled docx or pptx".
+### Level 3: Architecture, Tooling & Verification Engines
+* **Triggers:** "Design the API before writing code", "Which approach is better: A or B?", "Set up design tokens / 60-30-10 theme", "Mock this API", "Start local dev server / stack", "Audit document formatting / generate styled docx or pptx", "Generate E2E journey tests / check contrast", "Audit environment variables / .env drift", "Harden prototype / check security & 404/500 error pages".
 * **Action:**
   * For interface contracts $\rightarrow$ Route to **`/architect`**.
   * For competing implementations $\rightarrow$ Route to **`/arena`**.
@@ -75,8 +77,11 @@ When receiving a prompt, classify it into one of these 5 levels:
   * For offline API stubs and fixtures $\rightarrow$ Route to **`api-mock-factory`**.
   * For local dev server automation & port checks $\rightarrow$ Route to **`dev-stack-orchestrator`**.
   * For document style auditing & DOCX/PPTX generation $\rightarrow$ Route to **`doc-craft-engine`**.
+  * For headless Playwright journeys & WCAG AA/AAA checks $\rightarrow$ Route to **`journey-craft`**.
+  * For .env drift and secret leak detection $\rightarrow$ Route to **`env-sentinel`**.
+  * For post-prototype security hardening, XSS/CSRF & 404/error pages $\rightarrow$ Route to **`app-shield`**.
 * **Dispatch Receipt:**  
-  `[Hub: Foundation / Tooling (/architect | /arena | dev-stack | design-tokens | doc-craft)] Specialized foundation task detected. Executing with dedicated tooling.`
+  `[Hub: Foundation / Tooling (/architect | /arena | dev-stack | design-tokens | doc-craft | journey-craft | env-sentinel | app-shield)] Specialized foundation/tooling task detected. Executing with dedicated engine.`
 
 ### Level 4: System Epics (2+ Interconnected Features)
 * **Triggers:** Requests involving multiple interdependent features (e.g., *Dashboard + Logistics + Inventory + Messaging*).
@@ -85,15 +90,17 @@ When receiving a prompt, classify it into one of these 5 levels:
   2. Master Implementation Plan (`PLAN.md`) with shared Contract Spine.
   3. User approval checkpoint.
   4. Parallel feature execution in isolated Git worktrees.
-  5. Integration Arbiter cross-feature E2E journey test.
+  5. Integration Arbiter cross-feature E2E journey test (powered by `journey-craft`).
 * **Dispatch Receipt:**  
   `[Hub: Federated Multi-Feature] Detected 2+ interdependent features. Initiating gap-analysis and Master Implementation Plan...`
 
-### Level 5: High-Risk Adversarial Review
-* **Triggers:** "Review this PR", "Check this diff for bugs", security/auth changes, payment processing logic, concurrency.
-* **Action:** Route to **`/interrogate`** to aggressively find race conditions, memory leaks, and unhandled edge cases.
+### Level 5: High-Risk Review & Release Flight Recording
+* **Triggers:** "Review this PR", "Check this diff for bugs", security/auth changes, payment processing logic, concurrency, "Ship it / release PR and changelog".
+* **Action:**
+  * For adversarial diff reviews $\rightarrow$ Route to **`/interrogate`** to find race conditions, memory leaks, and unhandled edge cases.
+  * For automated release summaries, SemVer bumping, changelogs, and PR authoring $\rightarrow$ Route to **`flight-recorder`** (`/flight-recorder`, `/ship-it`).
 * **Dispatch Receipt:**  
-  `[Hub: Adversarial Review (/interrogate)] Critical code changes detected. Spawning skeptical reviewer to challenge diff boundaries.`
+  `[Hub: Verification & Release (/interrogate | flight-recorder)] Critical review or release flight recording task detected. Spawning verification and delivery engines.`
 
 ---
 

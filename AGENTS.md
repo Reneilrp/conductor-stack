@@ -19,10 +19,10 @@ This workspace enforces a **Homogeneous Model, Heterogeneous Personas** sub-orch
 Whenever tackling any focused bug, feature, refactor, or performance issue, follow this sequential state machine:
 
 ### Phase 1: Audit & Root-Cause (Read-Only)
-* **Tools / Skills:** `/how`, `/why`, `principle-fix-root-causes`
+* **Tools / Skills:** `/how`, `/why`, `incident-triage`, `til-vault`, `principle-fix-root-causes`
 * **Protocol:**
-  1. Inspect codebase architecture and trace history without altering production code.
-  2. Locate the precise root cause.
+  1. Inspect codebase architecture, query `til-vault` for known platform quirks, and trace history without altering production code.
+  2. For runtime crashes or logs, use `incident-triage` to extract the culprit line and git blame.
   3. Write a standalone minimal reproduction test or script that fails.
 * **Gate Check:** You are strictly forbidden from modifying production files until the reproduction test reproduces the failure.
 
@@ -43,19 +43,22 @@ Whenever tackling any focused bug, feature, refactor, or performance issue, foll
 * **Gate Check:** All unit and reproduction tests pass locally.
 
 ### Phase 4: Adversarial Verification
-* **Tools / Skills:** `/interrogate`, `principle-prove-it-works`, `principle-test-behavior-not-implementation`
+* **Tools / Skills:** `/interrogate`, `journey-craft`, `env-sentinel`, `app-shield`, `principle-prove-it-works`, `principle-test-behavior-not-implementation`
 * **Protocol:**
   1. Review the diff with a skeptical, adversarial posture ("try to break this fix").
-  2. Test edge cases, concurrency, and boundary conditions.
-  3. Execute the real runtime command or test suite and inspect raw output.
+  2. Run `app-shield` to audit security headers, XSS injection risks, and ensure 404/500 error boundaries exist.
+  3. Run `env-sentinel` to verify zero environment drift and zero leaked keys.
+  4. Synthesize and execute cross-page journeys via `journey-craft` for behavioral proof.
+  5. Execute the real runtime command or test suite and inspect raw output.
 * **Gate Check:** "It compiles" or "looks good" is never accepted. Real runtime execution evidence must be logged.
 
-### Phase 5: Sanitization & Clean Handoff
-* **Tools / Skills:** `/unslop`, `/no-comments`, `technical-writing`
+### Phase 5: Sanitization, Decision Recording & Release Handoff
+* **Tools / Skills:** `/unslop`, `/no-comments`, `til-vault`, `flight-recorder`, `technical-writing`
 * **Protocol:**
   1. Strip all temporary debugging comments, console logs, and workaround tags (`/no-comments`).
   2. Tighten prose to remove AI conversational filler (`/unslop`).
-  3. Format concise, conventional commit messages and review summaries.
+  3. Record new quirks, lessons, or ADRs into `til-vault` so future agents never repeat mistakes.
+  4. Run `flight-recorder` to evaluate SemVer impact, update `CHANGELOG.md`, and format the PR summary.
 
 ---
 
@@ -84,7 +87,7 @@ When the user requests multiple interdependent features (e.g. *Dashboard + Logis
 ### Step 3: Federated Wave Execution
 1. **Wave 1 (Dual Spine & Mocks):** Chief Orchestrator writes shared domain schemas and delegates to specialized leaf skills: `design-tokens-generator` (60-30-10 palette, typography scale, tokens) and `api-mock-factory` (in-memory mock adapters and seed fixtures).
 2. **Wave 2 (Parallel Feature Worktrees):** Parallel subagents run in isolated Git worktrees against the mock contracts and shared design tokens, each enforcing the 5-Phase pstack flow.
-3. **Wave 3 (Integration Arbiter & E2E Proof):** Merge branches, wire live dependencies together, and execute the full cross-feature journey test and visual audit.
+3. **Wave 3 (Integration Arbiter & E2E Proof):** Merge branches, wire live dependencies together, and execute full cross-feature journeys via `journey-craft`, contrast audits, and release packaging via `flight-recorder`.
 
 ### Step 4: Polish & Handoff
 * Apply `/unslop` and `/no-comments` across the integrated diff.

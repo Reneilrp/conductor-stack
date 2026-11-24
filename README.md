@@ -52,6 +52,12 @@ flowchart TD
 * 🚀 **[`dev-stack-orchestrator`](.agents/skills/dev-stack-orchestrator/SKILL.md) (`/dev-stack`):** Audits ports and generates startup scripts with graceful `Ctrl+C` trap handlers for backend, frontend, workers, and WebSockets.
 * 📄 **[`doc-craft-engine`](.agents/skills/doc-craft-engine/SKILL.md) (`/doc-craft`):** Reverse-engineers reference documents (`.docx`, `.pptx`, `.pdf`) into `DOC_STYLE.json`, then compiles publication-grade Word documents and 16:9 widescreen PowerPoint decks using bundled Python scripts.
 * 📋 **[`project-profiler`](.agents/skills/project-profiler/SKILL.md) (`/profile-project`):** Scans any repository and generates an authoritative **`ARCHITECTURE.md`** manifesto so agents immediately know your frontend, backend, database, and daemons without asking.
+* 🎭 **[`journey-craft`](.agents/skills/journey-craft/SKILL.md) (`/journey-craft`):** Synthesizes headless Playwright tests, multi-step interactive user flows, and automated WCAG AA/AAA visual contrast verification suites.
+* 🚨 **[`incident-triage`](.agents/skills/incident-triage/SKILL.md) (`/incident-triage`):** Forensic analyzer for terminal crashes and stack traces. Isolates culprit lines, pulls git blame, and scaffolds minimal reproduction test stubs.
+* 🛫 **[`flight-recorder`](.agents/skills/flight-recorder/SKILL.md) (`/flight-recorder`):** Autonomous release engineer that calculates SemVer impact, risk blast radius (1-5), updates `CHANGELOG.md`, and drafts publication-grade PR markdown.
+* 🛡️ **[`env-sentinel`](.agents/skills/env-sentinel/SKILL.md) (`/env-sentinel`):** Detects missing environment keys, orphaned configs, and secret leaks across code and `.env` files with auto-synchronization to `.env.example`.
+* 🔒 **[`app-shield`](.agents/skills/app-shield/SKILL.md) (`/app-shield`):** Post-prototype security hardening & UX resilience engine. Audits XSS, CSRF, security headers, open CORS, and scaffolds custom 404/500 error boundaries.
+* 🧠 **[`til-vault`](.agents/skills/til-vault/SKILL.md) (`/til-vault`):** Persistent memory vault and Architecture Decision Record (ADR) manager so agents never repeat past mistakes or fight known tooling quirks.
 
 ### 2. Tactical Engineering Core (from Lauren Tan's `pstack`)
 * ⚡ **`poteto-mode`:** Flagship router with 23 playbooks enforcing root-cause investigation before code changes.

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "qui-001",
+      "date": "2026-11-24 00:27:03",
+      "category": "quirk",
+      "title": "Use py -3 launcher on Windows",
+      "tags": [
+        "windows",
+        "python",
+        "launcher"
+      ],
+      "content": "On Windows with Python 3.14, 'python' app execution alias may fail; always invoke 'py -3'."
+    }
+  ]
+}
